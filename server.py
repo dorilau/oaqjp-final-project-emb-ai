@@ -1,3 +1,6 @@
+"""
+This module contains an emotion detection function and a function that formats its response.
+"""
 from flask import Flask, request, jsonify
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -5,6 +8,9 @@ app = Flask(__name__)
 
 
 def format_emotion_response(emotion_scores):
+    """
+    This function formats the response.
+    """
     anger = emotion_scores.get('anger', 0)
     disgust = emotion_scores.get('disgust', 0)
     fear = emotion_scores.get('fear', 0)
@@ -26,6 +32,9 @@ def format_emotion_response(emotion_scores):
 
 @app.route('/emotionDetector', methods=['POST'])
 def detect_emotion():
+    """
+    This function detection emotions based on input text.
+    """
     data = request.get_json()
     text = data.get('text', '').strip()
     result = emotion_detector(text)
