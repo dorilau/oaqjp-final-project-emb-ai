@@ -1,6 +1,6 @@
-
 import pytest
 from EmotionDetection.emotion_detection import emotion_detector
+
 
 class TestEmotions:
 
