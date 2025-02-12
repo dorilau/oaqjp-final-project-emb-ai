@@ -12,7 +12,7 @@ def format_emotion_response(emotion_scores):
     sadness = emotion_scores.get('sadness', 0)
     dominant_emotion = emotion_scores.get('dominant_emotion', '')
 
-    if not dominant_emotion:  # Handle cases where no dominant emotion is detected
+    if dominant_emotion == "None":
         return "Invalid text! Please try again."
 
     response = (
@@ -28,17 +28,6 @@ def format_emotion_response(emotion_scores):
 def detect_emotion():
     data = request.get_json()
     text = data.get('text', '').strip()
-
-    if data.status_code == 400:
-        return {
-            "anger": "None",
-            "disgust": "None",
-            "fear": "None",
-            "joy": "None",
-            "sadness": "None",
-            "dominant_emotion": "None"
-        }
-
     result = emotion_detector(text)
     formatted_response = format_emotion_response(result)
 

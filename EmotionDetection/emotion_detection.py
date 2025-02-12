@@ -25,6 +25,13 @@ def emotion_detector(text_to_analyse):
             "joy": joy_score,
             "sadness": sadness_score}
 
+
+
+
+
+
+        
+
         dominant_score = max(emotion_scores, key=emotion_scores.get)
         result = {
             "anger": anger_score,
@@ -38,7 +45,15 @@ def emotion_detector(text_to_analyse):
         print(result)
         return result
 
-
+    elif response.status_code == 400:
+        return {
+            "anger": "None",
+            "disgust": "None",
+            "fear": "None",
+            "joy": "None",
+            "sadness": "None",
+            "dominant_emotion": "None"
+        }
     else:
         print("Error:", response.status_code)
         return None
